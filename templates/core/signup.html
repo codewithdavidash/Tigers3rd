@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock title %}
+{% block content %}
+<form action="." method="post" class="p-10 mt-15">
+     <div class="">
+     {% csrf_token %}
+     <label>Username: </label><br>
+     {{ form.username }} <br><br>
+     <label>Email Address: </label><br>
+     {{ form.email }} <br><br>
+     <label>Password: </label><br>
+     {{ form.password1 }} <br><br>
+     <label>Confirm Password: </label><br>
+     {{ form.password2 }} <br><br>
+     
+     <div class="border-gray-500 text-red-600">
+          {% if form.errors or form.non_field_errors %}
+               {% for field in form %}
+                 {{ field.errors }}
+               {% endfor %}
+               {{ form.non_field_errors}}
+               <br>
+          {% endif %}
+     </div>
+     
+     <button type="submit" class="rounded-md text-white bg-yellow-500 hover:bg-gray-500 p-1">Signup</button>
+     </div>
+</form>
+{% endblock content %}

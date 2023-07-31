@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="py-6">
+<details class="p-6" open>
+     <summary>HTML | CSS</summary>
+<div class="grid-cols-3 grid gap-3 xl:grid-cols-5">
+     {% for items in html %}
+     <p >
+          <img src="{{ items.image.url }}" class="h-20 pt-5">
+          <a href="{{ items.video_link }}" target="_blank" class="text-xs text-red-500 mt-3">{{ items.title }}</a>
+          </p>
+{% endfor %}
+</div>
+</details>
+<details class="p-6" open>
+     <summary>JavaScript</summary>
+<div class="grid-cols-3 grid gap-3 xl:grid-cols-5">
+     {% for items in js %}
+     <p >
+          <img src="{{ items.image.url }}" class="h-20 pt-5">
+          <a href="{{ items.video_link }}" target="_blank" class="text-xs text-yellow-500 mt-3">{{ items.title }}</a>
+          </p>
+{% endfor %}
+</div>
+</details>
+<details class="p-6" open>
+     <summary>Python</summary>
+<div class="grid-cols-3 grid gap-3 xl:grid-cols-5">
+     {% for items in python %}
+     <p >
+          <img src="{{ items.image.url }}" class="h-20 pt-5">
+          <a href="{{ items.video_link }}" target="_blank" class="text-xs text-blue-500 mt-3">{{ items.title }}</a>
+          </p>
+{% endfor %}
+</div>
+</details>
+
+{% if request.user.is_authenticated %}
+{% if request.user.is_staff %}
+<div class="px-3 py-6 items-center">
+     
+<div class="border-b px-3 py-3 mt-2 mb-5 border-t text-center">
+     <p>Notes</p>
+</div>
+<div class="grid-cols-3 grid gap-3 xl:grid-cols-5">
+     {% if html %}
+     {% for items in html %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>       
+     {% endfor %}
+     {% endif %}
+     {% if js %}
+     {% for items in js %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>            {% endfor %}
+     {% endif %}
+     {% if python %}
+     {% for items in python %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>            {% endfor %}
+     {% endif %}
+</div>
+</div>
+     <div class="border-b px-3 py-6 mb-5 border-t text-center">
+          <p>Students Assignments</p>
+     </div>
+{% for items in a %}
+  <p class="flex justify-between"> 
+     <div class=" px-3">
+          <p class="grid-cols-2 grid gap-2 text-xs">Submitted by {{ items.username }}, Submitted {{ items.posted_at|timesince }} ago -</p>
+          <a href="{{ items.assignments }}" download><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 text h-6 mb-3">
+               <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+             </svg></a>
+     </div>
+  </p>
+{% endfor %}
+</div>
+{% else %}
+{% if messages %}
+{% for message in messages %}
+<script>
+     alert("{{ message }}");
+</script>
+{% endfor %}
+{% endif %}
+<div class="border-b px-3 py-3 mt-2 mb-5 border-t text-center">
+     <p>Notes</p>
+</div>
+<div class="grid-cols-3 grid gap-3 xl:grid-cols-5">
+     {% if html %}
+     {% for items in html %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>            {% endfor %}
+     {% endif %}
+     {% if js %}
+     {% for items in js %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>       
+     {% endfor %}
+     {% endif %}
+     {% if python %}
+     {% for items in python %}
+     <a href="{{ items.notes }}" class="text-red-500 px-2" download>{% if items.notes %}{{ items.title }}{% endif %}<br></a>            {% endfor %}
+     {% endif %}
+</div>
+</div>
+   {% endif %}
+     {% else %}
+     {% endif %}
+</div>
+{% endblock content %}

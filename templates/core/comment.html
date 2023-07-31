@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Comment Section{% endblock title %}
+{% block content %}
+<br>
+<div class="items-center justify-center flex">
+<form action="." method="post" class="p-10 mt-15">
+     <div class="bg-gray-100 p-5 shadow-2xl">
+     {% csrf_token %}
+     <label>Username: </label><br>
+     {{ form.username }} <br><br>
+     <label>Comment: </label><br>
+     {{ form.body }} <br><br>
+     
+     <div class="border-gray-500 text-red-600">
+          {% if form.errors or form.non_field_errors %}
+               {% for field in form %}
+                 {{ field.errors }}
+               {% endfor %}
+               {{ form.non_field_errors}}
+               <br>
+          {% endif %}
+     </div>
+          <button type="submit" class="rounded-md text-white w-[20rem] bg-yellow-500 hover:bg-gray-500 p-1">Send</button>
+</form>
+</div></div><br><br><br><br>
+<div class="border-b border-t"><p class="text-center">Comments</p></div>
+{% if comment %}
+<br><br><br>
+<div class="items-center justify-center sm:flex mr-[5px]" style="overflow-y: scroll; height: 20rem;">
+     <div>
+
+          <div class="px-5 py-6 justify-between">
+     {% for items in comment %}   
+      <div class="flex">
+          <img src="{% static 'media/user.png' %}" class="mt-5 border-blue-300 float-left h-[3rem] w-[3rem] rounded-full sm:rounded-full md:rounded-full xl:rounded-full">
+          <div class=" bg-gray-400 sm:w-[20rem] p-4 rounded-b-lg ml-2 mt-10">
+              <p class="text-white text-sm"><span class="text-gray-300 text-md font-bold sm:">{{ items.username }}</span> - {{ items.body }} <br> {{ items.created_at }}
+              </p>
+          </div>
+          </div>
+{% endfor %}
+</p>
+     </div>
+</div>
+</div>  
+{% endif %}
+</div><br><br>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Account Settings{% endblock title %}
+{% block content %}
+<div class="py-12 px-3 mb-20 flex items-center justify-center">
+<div>
+    <img src="{% static 'media/user.png' %}" alt="" class="rounded-full sm:w-[300px] sm:h-[300px]">
+<p class="text-center font-bold mt-5 sm:text-3xl border-b ">{{ user }}</p>
+</div>
+</div>
+<div class=" px-3 mb-40 flex items-center justify-center">
+    <div>
+    <p class="text-center font-bold">Change Password</p><br>
+    <a href="/changepassword/"><button class="w-[20rem] bg-yellow-500 hover:bg-yellow-700 text-white p-2 rounded-md">Change Password</button></a>
+</div>
+<div class="ml-40">
+    <p class="text-center font-bold">Logout</p><br>
+    <a href="/logout/"><button class="w-[20rem] bg-yellow-500 hover:bg-yellow-700 text-white p-2 rounded-md">Logout</button></a>
+</div></div>
+
+{% endblock content %}

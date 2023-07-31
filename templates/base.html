@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{% block title %}{% endblock title %} | Tigers Software Class</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+     <nav class="px-4 py-6 flex items-center bg-yellow-500 ">
+          <img src="{% static 'media/logo.png' %}" class="h-12 float-left">
+  <a class="text-blue-900 sm:w-[30rem] md:w-[30rem] xl:w-[30rem] 2xl:w-[30rem] font-normal sm:text-2xl ">Tigers Software Class</a>
+<div class="flex">
+     <div class="menu_right flex justify-between ml-[7rem] sm:ml-[55rem]">
+     {% if request.user.is_authenticated %}
+      {% if request.user.is_staff %}
+      <div class="grid grid-cols-4 gap-3 mb-2 mt-2">
+          <div class="flex flex-wrap">
+               <div class="w-full sm:w-6/12 md:w-4/12 px-4">
+                 <div class=" align-middle w-full">
+                   <button class="text-blue-800 uppercase text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="openDropdown(event,'dropdown-id')">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                         </svg>                      
+                   </button>
+                   <div class="hidden bg-gray-500  text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" id="dropdown-id">
+                    <a href="/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap hover:bg-gray-700 bg-transparent text-blue-200">
+                         All Courses
+                     </a>
+                    <a href="/add/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap hover:bg-gray-700 bg-transparent text-blue-200">
+                       Add Courses
+                   </a>
+                     <a href="/comment/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-700 text-blue-200">
+                       Comment
+                      </a>
+                     <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
+                     <a href="/myaccount/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                      My Account 
+                     </a>
+                     <a href="/feedback/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                       Send Feedback
+                     </a>
+                   </div>
+                 </div>
+               </div>
+               </div>
+               </div>
+               </div>
+             </div>
+             <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+             <script>
+               function openDropdown(event,dropdownID){
+                 let element = event.target;
+                 while(element.nodeName !== "BUTTON"){
+                   element = element.parentNode;
+                 }
+                 var popper = Popper.createPopper(element, document.getElementById(dropdownID), {
+                   placement: 'bottom-start'
+                 });
+                 document.getElementById(dropdownID).classList.toggle("hidden");
+                 document.getElementById(dropdownID).classList.toggle("block");
+               }
+             </script>   
+      </div>
+      {% else %}
+      <div class="grid grid-cols-4 gap-3 mb-2 mt-2">
+          <div class="flex flex-wrap">
+               <div class="w-full sm:w-6/12 md:w-4/12 px-4">
+                 <div class=" align-middle w-full">
+                   <button class="text-blue-800 uppercase text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="openDropdown(event,'dropdown-id')">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                         </svg>                      
+                   </button>
+                   <div class="hidden bg-gray-500  text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" id="dropdown-id">
+                     <a href="/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap hover:bg-gray-700 bg-transparent text-blue-200">
+                       All Courses
+                   </a>
+                     <a href="/comment/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-700 text-blue-200">
+                       Comment
+                      </a>
+                     <a href="/submit_assignments/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                       Submit Assignments
+                     </a>
+                     <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
+                     <a href="/myaccount/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                       My Account
+                     </a>
+                     <a href="/feedback/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                       Send Feedback
+                     </a>
+                   </div>
+                 </div>
+               </div>
+               </div>
+               </div>
+               </div>
+             </div>
+             <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+             <script>
+               function openDropdown(event,dropdownID){
+                 let element = event.target;
+                 while(element.nodeName !== "BUTTON"){
+                   element = element.parentNode;
+                 }
+                 var popper = Popper.createPopper(element, document.getElementById(dropdownID), {
+                   placement: 'bottom-start'
+                 });
+                 document.getElementById(dropdownID).classList.toggle("hidden");
+                 document.getElementById(dropdownID).classList.toggle("block");
+               }
+             </script>   
+     </div>
+      {% endif %}
+           {% else %}
+           <div class="grid grid-cols-3 gap-3 mb-2 mt-2">
+               <div class="flex flex-wrap">
+                    <div class="w-full sm:w-6/12 md:w-4/12 px-4">
+                      <div class=" align-middle w-full">
+                        <button class="text-blue-800 uppercase text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="openDropdown(event,'dropdown-id')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                              </svg>                      
+                        </button>
+                        <div class="hidden bg-gray-500  text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" id="dropdown-id">
+                          <a href="/login/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap hover:bg-gray-700 bg-transparent text-blue-200">
+                            Login
+                        </a>
+                          <a href="/info/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-700 text-blue-200">
+                            Info
+                           </a>
+                          <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
+                          <a href="/terms_and_conditions/" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blue-200 hover:bg-gray-700">
+                            Terms And Conditions
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+                  <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+                  <script>
+                    function openDropdown(event,dropdownID){
+                      let element = event.target;
+                      while(element.nodeName !== "BUTTON"){
+                        element = element.parentNode;
+                      }
+                      var popper = Popper.createPopper(element, document.getElementById(dropdownID), {
+                        placement: 'bottom-start'
+                      });
+                      document.getElementById(dropdownID).classList.toggle("hidden");
+                      document.getElementById(dropdownID).classList.toggle("block");
+                    }
+                  </script>        
+          </div>
+           {% endif %}
+           </div>
+
+</nav>   
+    {% block content %}
+    {% endblock content %}
+    <footer class="p-5 mt-10 bg-black text-yellow-500">
+     <p align="center">2023 &copy;Tigers Software Class. All rights reserved.</p> <br> 
+     <p align="center" class="p-3"><a href="/info/" class=" hover:bg-yellow-600 hover:text-white p-1 rounded-md">Info</a></p>
+     <p align="center"><a href="/terms_and_conditions/" class=" hover:bg-yellow-600 hover:text-white p-1 rounded-md">Terms And Conditions</a></p><br>
+    </footer>
+</body>
+</html>
